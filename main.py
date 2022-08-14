@@ -9,10 +9,10 @@ api = Api(app)
 loop = asyncio.get_event_loop()
 
 @app.route('/song')
-def get():
+async def get():
     songRequest = request.args.get('songname')
-    test = loop.run_until_complete(script.pyppeteer_test((songRequest)))
-    test = loop.run_until_complete(script.get_song_data(test))
+    test = await script.pyppeteer_test((songRequest))
+    test = await script.get_song_data(test)
     return {'data': test}, 200
 
 if __name__ == '__main__':
